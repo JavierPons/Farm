@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" href="./style.css">
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.3.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.3.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/babel">
+
+
+class NameForm extends React.Component {
+constructor() {
+  super(props);
+ this.state = {
+  //   name: '',
+  //   shareholders: [{name:''}],
+    term: '',
+    itmes: []
+   };
+
+  onChange = (event) => {
+    this.setState({term: event.target.value});
+  }
+
+  
+}
+
+
+    handlSubmit = event => {
+        event.preventDefault()
+
+        this.setState({
+          term: '',
+          items: [...this.state.itmes, 
+          this.state.term]
+        })
+        console.log({target: event.target})
+        
+        console.log(event.target.elements.username.value)
+        
+    }
+
+ render() {
+    return (
+      
+      <form onSubmit={this.handlSubmit} 
+      
+      style={{display: 'flex', 
+      flexDirection: 'column',
+      width: 400,
+      margin: '0 auto',
+      border: '2px red solid',
+      padding: 20,
+      backgroundColor: '#DCDCDC',
+      position: 'relative',
+      top:100}}
+      
+      >
+
+      <h1>Farmer List</h1>
+      <label>
+        Name:
+        <input type="text"   
+        name="username"
+        ref={node => (this.inputNode = node)}/>
+      </label>
+      <label>
+        Phone number:
+        <input type="number" name="telephone"
+        />
+      </label>
+      <p>Please select your gender</p>
+      <input type="radio" id="contact1" name="contact" value={this.state.term} onChange={this.onChange}/>
+      <label htmlFor="contact1">Male</label>
+
+      <input type="radio" id="contact2" name="contact" value={this.state.term} onChange={this.onChange}/>
+      <label htmlFor="contact1">Female</label>
+      <button type="submit">Submit</button>
+      </form>
+    )
+  }
+}
+ReactDOM.render(
+  <NameForm />,
+  document.getElementById('root'),
+)
+</script>
+</body>
